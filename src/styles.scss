@@ -2,4 +2,39 @@
 html {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+
+body {
+    background-color: #1C3043;
+}
   
+
+
+.mat-card-image:first-child {
+    margin: 0;
+    border-radius: 0;
+}
+.mat-card {
+    padding: 0;
+}
+
+.mat-card-actions {
+    padding: 0;
+    /* display: block; */
+    margin: 0 1rem 1rem 1rem;
+    width: calc(100% - 2rem);
+    box-sizing: border-box;
+}
+
+.mat-card-header .mat-card-title {
+    font-size: 1rem; 
+}
+
+.mat-paginator-outer-container {
+    background-color: #1C3043;
+    color: white;
+}
+
+.mat-paginator-container {
+    justify-content: center !important;
+}
+
