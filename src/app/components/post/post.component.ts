@@ -12,10 +12,15 @@ export class PostComponent implements OnInit {
     @Input() post: Post = {
         title: '',
         imageUrl: '',
-        selftext: ''
+        selftext: '',
+        created: 0,
+        num_comments: 0,
+        author: '',
+        score: 0
     };
   
     public isTextHidden = false;
+    public date: Date | undefined;
 
     ngOnChanges(changes: SimpleChanges): void {
         // could be used if data changes over time
@@ -23,7 +28,7 @@ export class PostComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
+        this.date = new Date(this.post.created*1000);
     }
 
     public handleMissingImage(event: Event): void {

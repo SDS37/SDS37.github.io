@@ -9,11 +9,13 @@ import { MatTableModule } from '@angular/material/table';
 
 import { PostsComponent } from './posts.component';
 import { PostComponent } from './post/post.component';
+import { DateAgoPipe } from '../pipes/date-ago.pipe';
 
 @NgModule({
   declarations: [
     PostsComponent,
-    PostComponent
+    PostComponent,
+    DateAgoPipe
   ],
   imports: [
     CommonModule,

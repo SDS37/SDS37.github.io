@@ -8,4 +8,8 @@ export interface RedditData {
     title: string;
     url: string;
     selftext: string;
+    created: number,
+    num_comments: number,
+    author: string,
+    score: number
 }

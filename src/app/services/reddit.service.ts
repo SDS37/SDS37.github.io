@@ -21,7 +21,15 @@ export class RedditService {
             .pipe(
                 map((response: RedditPost): RedditPost[] => response.data.children),
                 map((children: RedditPost[]): Post[] => children.map( (child: RedditPost): Post => 
-                    new Post(child.data.title, child.data.url, child.data.selftext)
+                    new Post(
+                        child.data.title,
+                        child.data.url,
+                        child.data.selftext,
+                        child.data.created,
+                        child.data.num_comments,
+                        child.data.author,
+                        child.data.score
+                    )
                 ))
             );
     }
