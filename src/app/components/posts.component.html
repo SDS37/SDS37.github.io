@@ -1,6 +1,6 @@
 <div class='list-container'>
   <ng-container *ngIf="posts$ | async as posts">
-    <ng-container *ngFor="let post of posts; trackBy: trackByFn">
+    <ng-container *ngFor="let post of posts">
       <app-post [post]="post"></app-post>
     </ng-container>
   </ng-container>

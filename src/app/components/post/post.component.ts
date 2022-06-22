@@ -20,15 +20,22 @@ export class PostComponent implements OnInit {
     };
   
     public isTextHidden = false;
-    public date: Date | undefined;
+    public dateCreated: Date | undefined;
+    public contentDefaultHeight: number | undefined;
+    public thumbNail: string = '';
+
+    constructor() {}
 
     ngOnChanges(changes: SimpleChanges): void {
+        if (changes && changes.post.currentValue.imageUrl !== changes.post?.previousValue?.imageUrl) {
+            this.thumbNail = changes.post.currentValue.imageUrl;
+        }
         // could be used if data changes over time
         console.debug('changes', changes);
     }
 
     ngOnInit(): void {
-        this.date = new Date(this.post.created*1000);
+        this.dateCreated = new Date(this.post.created*1000);
     }
 
     public handleMissingImage(event: Event): void {
@@ -37,6 +44,6 @@ export class PostComponent implements OnInit {
 
     public togglePostText(): void {
         this.isTextHidden = !this.isTextHidden
-
     }
+
 }

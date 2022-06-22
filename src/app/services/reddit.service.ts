@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { Post } from '../models/post.class';
 import { RedditPost } from '../models/reddit.interface';
 
-const REDDIT_URL = 'http://www.reddit.com/r/golf.json';
+const REDDIT_URL = 'https://api.reddit.com/r/golf.json';
 
 @Injectable({
   providedIn: 'root',

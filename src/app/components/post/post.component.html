@@ -1,10 +1,13 @@
-<mat-card class='card-container'>
-    <img mat-card-image [src]="post.imageUrl" (error)="handleMissingImage($event)" >
+<mat-card class='card-container' [ngClass]="{'alone': post.selftext === '' && thumbNail === ''}">
+    <div class="image-container">
+        <img mat-card-image [src]="thumbNail" (error)="handleMissingImage($event)" >
+    </div>
     <div class="content">
+        <div class="top-container">
+            <span><img src="/assets/comment.png">{{ post.num_comments }}</span>
+            <span><img src="/assets/updutt.png">{{ post.score }}</span>
+        </div>
         <mat-card-header>
-            {{ post.num_comments }}
-            <br/>
-            {{ post.score }}
             <mat-card-title>{{ post.title }}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
@@ -14,13 +17,20 @@
                 </p>
             </ng-container>
         </mat-card-content>
-        <mat-card-actions>
-            <ng-container *ngIf="post.selftext !== ''">
-                posted {{ date | dateAgo }} by {{ post.author }}
-                <div (click)="togglePostText()">
-                    {{ isTextHidden ? 'Show Less': 'Show More' }}
+        <ng-container *ngIf="post.selftext !== ''">
+            <mat-card-actions>
+                <div class="bottom-container">
+                    <span>posted {{ dateCreated | dateAgo }} by {{ post.author }}</span>
+                    <div class="toggle-text" (click)="togglePostText()">
+                        <ng-container *ngIf="isTextHidden; else showMore">
+                            <span>Show Less</span><img class="inverted" src="/assets/chvr1.png">
+                        </ng-container>
+                        <ng-template #showMore>
+                            <span>Show More<img src="/assets/chvr1.png"></span>
+                        </ng-template>
+                    </div>
                 </div>
-            </ng-container>
-        </mat-card-actions>
+            </mat-card-actions>
+        </ng-container>
     </div>
-  </mat-card>
+</mat-card>
