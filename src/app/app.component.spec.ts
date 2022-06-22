@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'fetching-reddit-data'`, () => {
+  it(`should have as title 'fetching-reddit-posts'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('fetching-reddit-data');
+    expect(app.title).toEqual('fetching-reddit-posts');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('fetching-reddit-data app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('fetching-reddit-posts app is running!');
   });
 });
