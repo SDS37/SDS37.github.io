@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, SimpleChanges } from '@angular/core';
+import { Post } from 'src/app/models/post.class';
 
 @Component({
   selector: 'app-post',
@@ -8,15 +9,17 @@ import { Component, OnInit, Input, ChangeDetectionStrategy, SimpleChanges } from
 })
 export class PostComponent implements OnInit {
 
-    @Input() post: any;
+    @Input() post: Post = {
+        title: '',
+        imageUrl: '',
+        selftext: ''
+    };
   
     public isTextHidden = false;
 
-    constructor(
-    ) {}
-
     ngOnChanges(changes: SimpleChanges): void {
-        console.log('changes', changes);
+        // could be used if data changes over time
+        console.debug('changes', changes);
     }
 
     ngOnInit(): void {

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { Post } from '../models/post.class';
 import { RedditService } from '../services/reddit.service';
 
 
@@ -12,20 +13,20 @@ import { RedditService } from '../services/reddit.service';
 export class PostsComponent implements OnInit, OnDestroy {
 
   public destroy$ = new Subject<boolean>();
-  public posts: any[] = [];
+  public posts: Post[] = [];
 
-  isReadMore = true
+  public isReadMore = true
 
   constructor(
     private redditService: RedditService
   ) {}
 
-  ngOnInit() {
-    this.redditService.getPostsData().pipe(
+  ngOnInit(): void {
+    this.redditService.getPosts().pipe(
       takeUntil(this.destroy$)
-    ).subscribe( (data) => {
-      this.posts = data;
-      console.debug('posts', this.posts)
+    ).subscribe( (posts: Post[]): void => {
+      this.posts = posts;
+      console.debug('this.posts', this.posts)
     });
   }
 
