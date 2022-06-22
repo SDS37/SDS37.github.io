@@ -1,5 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Post } from '../models/post.class';
 import { RedditService } from '../services/reddit.service';
@@ -12,10 +14,14 @@ import { RedditService } from '../services/reddit.service';
 })
 export class PostsComponent implements OnInit, OnDestroy {
 
+  @ViewChild(MatPaginator) private _paginator!: MatPaginator;
+  
+  public posts$: BehaviorSubject<Post[]> = new BehaviorSubject<Post[]>([]);
   public destroy$ = new Subject<boolean>();
-  public posts: Post[] = [];
-
+  
   public isReadMore = true
+  
+  private _dataSource!: MatTableDataSource<Post>;
 
   constructor(
     private redditService: RedditService
@@ -25,14 +31,24 @@ export class PostsComponent implements OnInit, OnDestroy {
     this.redditService.getPosts().pipe(
       takeUntil(this.destroy$)
     ).subscribe( (posts: Post[]): void => {
-      this.posts = posts;
-      console.debug('this.posts', this.posts)
+      this._dataSource = new MatTableDataSource<Post>(posts);
+      this._dataSource.paginator = this._paginator;
+      this.posts$ = this._dataSource.connect();
+      console.debug('this.posts', posts)
     });
+  }
+
+  public trackByFn(index: number): number {
+    return index;
   }
 
   ngOnDestroy(): void {
     this.destroy$.complete();
     this.destroy$.next(true);
+    if (this._dataSource) { 
+      this._dataSource.disconnect(); 
+    }
+    this.posts$.complete();
   }
 
 }
