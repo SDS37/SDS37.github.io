@@ -34,7 +34,7 @@ export class PostsComponent implements OnInit, OnDestroy {
       this._dataSource = new MatTableDataSource<Post>(posts);
       this._dataSource.paginator = this._paginator as MatPaginator;
       this.posts$ = this._dataSource.connect();
-      // console.debug('this.posts', posts)
+      console.debug('this.posts', posts)
     });
   }
 

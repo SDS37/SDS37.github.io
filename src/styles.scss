@@ -6,29 +6,8 @@ html {
 body {
     background-color: #1C3043;
 }
-  
 
-
-.mat-card-image:first-child {
-    margin: 0;
-    border-radius: 0;
-}
-.mat-card {
-    padding: 0;
-}
-
-.mat-card-actions {
-    padding: 0;
-    /* display: block; */
-    margin: 0 1rem 1rem 1rem;
-    width: calc(100% - 2rem);
-    box-sizing: border-box;
-}
-
-.mat-card-header .mat-card-title {
-    font-size: 1rem; 
-}
-
+// material override
 .mat-paginator-outer-container {
     background-color: #1C3043;
     color: white;
@@ -38,3 +17,13 @@ body {
     justify-content: center !important;
 }
 
+.mat-paginator-outer-container {
+    background-color: #1C3043;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.mat-form-field {
+    background-color: white;
+    padding: 0 1rem;
+}

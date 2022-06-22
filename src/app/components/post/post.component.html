@@ -1,4 +1,4 @@
-<mat-card class='card-container' [ngClass]="{'alone': post.selftext === '' && thumbNail === ''}">
+<mat-card class='card-container' [ngClass]="{'empty': post.selftext === '' && thumbNail === ''}">
     <div class="image-container">
         <img mat-card-image [src]="thumbNail" (error)="handleMissingImage($event)" >
     </div>
