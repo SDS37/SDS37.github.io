@@ -1,2 +1,12 @@
-<header>REDDIT.COM/R/GOLF</header>
-<app-posts></app-posts>
+<header>
+    <span>REDDIT.COM/R/{{selectedValue.toUpperCase()}}</span>
+    <mat-form-field appearance="fill">
+        <mat-label>CATEGORY</mat-label>
+        <mat-select [(ngModel)]="selectedValue" name="category">
+            <mat-option *ngFor="let category of categories" [value]="category.value">
+            {{ category.viewValue }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</header>
+<app-posts [category]="selectedValue"></app-posts>
