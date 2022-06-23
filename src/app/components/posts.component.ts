@@ -39,8 +39,8 @@ export class PostsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.destroy$.next();
     this.destroy$.complete();
-    this.destroy$.next(true);
     if (this._dataSource) { 
       this._dataSource.disconnect(); 
     }
